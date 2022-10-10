@@ -1,0 +1,18 @@
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+    float true_val=sqrt(2),app_val;
+    printf("\n Enter the approximate value of sqrt of two: ");
+    scanf("%f",&app_val);
+
+    float abs_err,rel_err,per_err;
+    abs_err=fabs(true_val-app_val);
+    rel_err=abs_err/true_val;
+    per_err=rel_err*100;
+    
+    printf("\n Absolute Error=%f",abs_err);
+    printf("\n Relative Error=%f",rel_err);
+    printf("\n Percentage Error=%f",per_err);
+
+}
