@@ -1,0 +1,54 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <conio.h>
+#include <math.h>
+
+float f(float x){
+    //return (2*x - log10(x) - 7);
+    return ( cos(x)-3*x+1 );                      
+}
+
+float q(float x){
+    //return ((log10(x) + 7)/2.0);
+    return ( (cos(x)+1)/3 );                  
+}
+
+float df(float x){
+    //return(fabs(1/(2*x*log(10))));    
+    return ( -sin(x)/3 );      
+}
+
+int main(){
+    printf("\n\nName:Bhavya Shastri\n200121266\n\n");
+    //printf("Equation is 2*x - log10(x) - 7\n");
+    printf("Equation is cos(x)-3*x+1 \n");
+    float x,x1,err;
+    int it = 0, flag = 0;
+
+    printf("Enter the initial value of x : ");
+    scanf("%f",&x);
+
+    if((fabs(df(x)))<1){
+        printf("Case satisfied, Function is correct\n");
+        printf("Enter the allowed error : ");
+        scanf("%f",&err);
+
+        while(1){
+            it++;
+            x1 = q(x);
+            if(fabs(x1-x) <= err){
+                printf("The root of the equation is %f, after %d iteration\n",x1,it);
+                break;
+            }else{
+                x = x1;
+                printf("%d Iteration, Value of x is %f\n",it,x1);
+            }
+        }
+    }
+    else{
+        printf("Change the function\n");
+        exit(0);
+    }
+
+    return 0;
+}
