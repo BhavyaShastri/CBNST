@@ -1,0 +1,41 @@
+#include<stdio.h>  
+#include<math.h>
+
+float f(float x){
+    //float ans=(x*x*x)-5*x+1;
+    float ans = x-cos(x);
+    return ans;
+}
+
+int main(){
+    float a,b,x,allow_err;
+    int it=1;
+    
+    printf("\nName: Bhavya Shastri \nSection:B \nStd ID:200121266\n");
+    printf("For Equation: x-cos(x)\n");
+    printf("Enter the values of a & b: \n");
+    scanf("%f %f", &a,&b);
+
+    if(f(a)*f(b)<0)
+        printf("Root lies b/w a and b \n");
+    else
+        printf("Wrong interval!!....Try again \n");
+
+    printf("Enter the allowed error: ");
+    scanf("%f" , &allow_err);
+
+    x = 0.5*(a+b);
+
+    while(fabs(f(x))>allow_err){
+        x = 0.5*(a+b);
+       printf("%d Iteration for %f and %f, the value of x is: %f\n",it,a,b,x);    
+        if(fabs(f(x))<=allow_err)
+           printf("Root is %f ",x);
+        else if((f(a)*f(x))<0)
+           b = x;
+        else if(f(x)*f(b)<0)
+           a = x;
+    
+       it++;
+    }    
+}
