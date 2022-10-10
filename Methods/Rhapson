@@ -1,0 +1,69 @@
+#include <stdio.h>
+#include <math.h>
+
+float f(float x)
+{
+    return 3 * x - cos(x) - 1;
+}
+
+float diff(float x)
+{
+    return 3 + sin(x);
+}
+
+int main()
+{
+    int i = 0;
+    //float x1, x2, x, x0, error;
+    float x,x0,error;
+    
+    printf("\nName: Bhavya Shastri \nSection:B \nStd ID:200121266\n");
+    printf("\nEquation = 3x - cosx - 1");
+    printf("\nEnter the Error : ");
+    scanf("%f", &error);
+    
+    if(diff(x0) == 0){
+        printf("Error!!...");
+        return 0;
+    }
+    
+    printf("Enter the value of x0: \n");
+    scanf("%f", &x0);
+    /*printf("\nEnter the value of x1 and x2\n");
+      scanf("%f %f", &x1,&x2);
+    if (f(x1) * f(x2) > 0)
+    {
+        printf("These values are Invalid\n");
+    }
+    else
+    {
+        printf("\nRoots Lie between %f and %f\n", x1, x2);
+    }
+
+    if (fabs(f(x1)) < fabs(f(x2)))
+    {
+        x0 = x1;
+    }
+    else
+    {
+        x0 = x2;
+    }/*
+
+    while(1){
+        if(diff(x0) == 0){
+        printf("Error!!...");
+        return 0;
+    }
+        i++;
+        x =  x0 - (f(x0) / diff(x0));
+        if(fabs(x-x0) <= error){
+            printf("Iterations = %d  Roots = %f\n", i, x);
+            printf("\nRoot = %f  Total Iterations = %d\n", x, i);
+            break;
+        }else{
+            x0 = x;
+            printf("Iterations = %d  Roots = %f\n", i, x);
+        }
+    }
+
+}
