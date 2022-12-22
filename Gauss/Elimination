@@ -1,3 +1,4 @@
+//gauss elimination
 #include<stdio.h>
 
 int main(){
@@ -12,12 +13,14 @@ int main(){
         for(int j = 0 ; j <= n ; j++)
             scanf("%f",&a[i][j]);
     }
+
+    //Generating Upper Triangular Matrix
     for(int i = 0 ; i < n ; i++){
         for(int j = 0 ; j < n ; j++){
             if(i < j){
-                float res = a[j][i]/a[i][i];
+                float ratio = a[j][i]/a[i][i];
                 for(int k = 0 ; k <= n ; k++){
-                    a[j][k] = a[j][k] - (res*a[i][k]);
+                    a[j][k] = a[j][k] - (ratio*a[i][k]);
                 }
             }
         }
@@ -26,25 +29,26 @@ int main(){
     printf("The Upper Triangular matrix : \n");
     for(int i = 0 ; i < n ; i++){
         for(int j = 0 ; j <= n ; j++){
-            printf("%.2f      ",a[i][j]);
-        }printf("\n");
+            printf("%f      ",a[i][j]);
+        }
+        printf("\n");
     }
 
     //Backward substitution
-    float ans[n];
-    ans[n-1] = a[n-1][n]/a[n-1][n-1];
+    float value[n];
+    value[n-1] = a[n-1][n]/a[n-1][n-1];
 
     for(int i = n-2 ; i >= 0 ; i--){
-        float s = 0;
+        float sum = 0;
         for(int j = i+1 ; j < n ; j++){
-            s += a[i][j] * ans[j];
-        }ans[i] = (a[i][n]-s)/a[i][i];
+            sum += a[i][j] * value[j];
+        }value[i] = (a[i][n]-sum)/a[i][i];
     }
     
     printf("The value of unknowns : ");
     for(int i = 0 ; i < n ; i++){
-        printf("x%d = %f\n",i,ans[i]);
+        printf("x%d = %f\n",i,value[i]);
     }
 
-    return 0;    
+    return 0; 
 }
