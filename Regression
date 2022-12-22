@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include <math.h>
+
+int main(){
+    printf("\nName: Bhavya Shastri \nSection:B \nStd ID:200121266\n");
+    int n;
+    printf("Enter number of terms : ");
+    scanf("%d",&n);
+
+    float x[n],y[n],x2[n],y2[n],xy[n], sumx = 0 , sumy = 0, sumx2 = 0, sumy2 = 0, sumxy = 0;
+    printf("Enter the values of x's and corresponding y's :\n");
+    for(int i = 0 ; i < n ; i++){
+        scanf("%f%f",&x[i],&y[i]);
+        xy[i] = x[i] * y[i];
+        x2[i] = pow(x[i],2);
+        y2[i] = pow(y[i],2);
+        sumx += x[i];
+        sumy += y[i];
+        sumxy += xy[i];
+        sumx2 += x2[i];
+        sumy2 += y2[i];
+    }
+
+    float xa = sumx/n;
+    float ya = sumy/n;
+
+    printf("\n  x\t  y\t  xy\t x^2\t y^2\n");
+    for(int i = 0 ; i < n ; i++){
+        printf("%0.2f\t%0.2f\t%0.2f\t%0.2f\t%0.2f\n",x[i],y[i],xy[i],x2[i],y2[i]);
+    }printf("-------------------------------------\n");
+    printf("%0.2f\t%0.2f\t%0.2f\t%0.2f\t%0.2f\n",sumx,sumy,sumxy,sumx2,sumy2);
+    printf("-------------------------------------\n\n");
+
+    int choice;
+    printf("\n1.Line of Regression of y on x\n2.Line of Regression of x on y\nEnter your choice : ");
+    scanf("%d",&choice);
+
+    if(choice == 1){
+        float byx = ((n*sumxy)-(sumx*sumy))/((n*sumx2)-(pow(sumx,2)));
+        printf("\nRegression coefficient = %0.2f\n",byx);
+        printf("\nEquation of Line : y-%0.2f = %0.2f(x-%0.2f)\n\n",ya,byx,xa);
+    }else{
+        float bxy = ((n*sumxy)-(sumx*sumy))/((n*sumy2)-(pow(sumy,2)));
+        printf("\nRegression coefficient = %0.2f\n",bxy);
+        printf("\nEquation of Line : x-%0.2f = %0.2f(y-%0.2f)\n\n",xa,bxy,ya);
+    }
+
+    return 0;
+}
