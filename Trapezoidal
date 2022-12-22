@@ -1,0 +1,38 @@
+#include<stdio.h>  
+#include<math.h>
+
+float f(float x){
+    //return 1/(1+x*x);
+    return 1-exp(-x/2.0);
+}
+
+int main()
+{
+ int i, n;
+ float upper, lower, sum=0.0, integration=1, h;
+ printf("\nName: Bhavya Shastri \nSection:B \nStd ID:200121266\n");
+ printf("\nFor Equation: 1 - e^(-x/2)\n");
+ /* Input */
+ printf("\nEnter the Range: ");
+ printf("\nEnter lower limit of integration: ");
+ scanf("%f",&lower);
+ printf("\nEnter upper limit of integration: ");
+ scanf("%f",&upper);
+ printf("\nEnter number of sub intervals: ");
+ scanf("%d",&n);
+
+ h = (upper - lower)/n;                      /* Finding step size */
+
+ sum = f(lower) + f(upper);             /* Finding Integration Value */
+
+ for(i=1; i<n; i++)
+ {
+  //k = lower + i*width;
+  sum += 2 * (f(lower+i*h));
+ }
+
+ integration = sum * h/2;
+
+ printf("Required value of integration is: %f\n",integration);
+ return 0;
+}
