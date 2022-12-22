@@ -1,0 +1,94 @@
+#include <stdio.h>
+
+int main()
+{
+    int n;
+    int fact = 1;
+    float ans;
+    float u,u1,x;
+    printf("Enter the no of terms: \n");
+    scanf("%d",&n);
+    int i , j;
+    float a[n][n+1];
+    printf("Enter the value of x & y\n");
+    for(i=0;i<n;i++){
+        for(j=0;j<2;j++){
+            scanf("%f",&a[i][j]);
+        }
+    }
+    
+    int choice;
+    printf("1.Forward\n2.Backward\nEnter your choice: \n");
+    scanf("%d",&choice);
+    
+    switch(choice){
+        case 1:
+           //create
+           for(j=2;j<=n;j++){
+               for(i=0;i<n-j+1;i++){
+                   a[i][j] = a[i+1][j-1] - a[i][j-1];
+               }
+           }
+           
+           //print
+           printf("Difference Table: \n");
+           for(i=0;i<n;i++){
+               for(j=0;j<=n-i;j++){
+                   printf("%f ",a[i][j]);
+               }printf("\n");
+           }
+           
+           printf("Enter the value you have to interpolate for: \n");
+           scanf("%f",&x);
+           
+           u = (x-a[0][0])/(a[1][0]-a[0][0]);
+           u1 = u;
+           
+           ans = a[0][1];
+           for(j=2;j<=n;j++){
+               ans = ans + (u1*a[0][j])/fact;
+               fact*=j;
+               u1 = u1 * (u-(j-1));
+           }
+           printf("Value of function at %f = %f",x,ans);
+           break;
+           
+           
+         case 2:
+           //create
+           for(j=2;j<=n;j++){
+               for(i=n-1;i>=0;i--){
+                   a[i][j] = a[i][j-1] - a[i-1][j-1];
+               }
+           }
+           
+           //print
+           printf("Difference Table: \n");
+           for(i=0;i<n;i++){
+               for(j=0;j<=i+1;j++){
+                   printf("%f ",a[i][j]);
+               }printf("\n");
+           }
+           
+           printf("Enter the value you have to interpolate for: \n");
+           scanf("%f",&x);
+           
+           u = (x-a[n-1][0])/(a[1][0]-a[0][0]);
+           u1 = u;
+          
+           ans = a[n-1][1];
+           for(j=2;j<=n;j++){
+               ans = ans + (u1*a[n-1][j])/fact;
+               fact*=j;
+               u1 = u1 * (u+(j-1));
+           }
+           printf("Value of function at %f = %f",x,ans);
+           break;
+           
+          default:
+              printf("Enter valid choice\n");
+              return 0;
+    }
+    
+    return 0;
+}
