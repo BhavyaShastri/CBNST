@@ -1,0 +1,40 @@
+#include<stdio.h>  
+#include<math.h>
+
+float f(float x){
+    return  1/(1+x*x);
+}
+
+int main(){
+ float lower, upper, sum=0.0,integration=1, h;
+ int i, n;
+ printf("\nName: Bhavya Shastri \nSection:B \nStd ID:200121266\n");
+ printf("For Equation: 1/(1+x*x)\n");
+ 
+ printf("\nEnter the Range: ");
+ printf("\nEnter lower limit of integration: ");
+ scanf("%f",&lower);
+ printf("\nEnter upper limit of integration: ");
+ scanf("%f",&upper);
+ printf("\nEnter number of sub intervals: ");
+ scanf("%d",&n);
+
+ h = (upper - lower)/n;            /* Finding step size */
+
+ sum = f(lower) + f(upper);    /* Finding Integration Value */
+
+ for(i=1; i<n; i++)
+ {
+  //k = lower + i*width;
+  if(i%2==0){
+    sum += 2 * (f(lower+i*h));
+  }
+  else{
+    sum += 4 * (f(lower+i*h));
+  }
+ }
+ integration = sum * h/3;
+
+ printf("Required value of integration is: %f\n",integration);
+ return 0;
+}
